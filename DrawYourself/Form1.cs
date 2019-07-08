@@ -19,6 +19,7 @@ namespace DrawYourself
         Point end = new Point(0, 0);
         List<List<Point>> pathList = new List<List<Point>>();
         int strokes = 0;
+        string name_of_doodle;
         //Point[] path;
         public Form1()
         {
@@ -59,6 +60,7 @@ namespace DrawYourself
 
         private void button1_Click(object sender, EventArgs e)
         {
+            textBox2.Text = name_of_doodle;
             canvas.Refresh();
             frame.Refresh();
             Graphics gnew = frame.CreateGraphics();
@@ -101,6 +103,19 @@ namespace DrawYourself
             }
             pathList.Clear();
             strokes = 0;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            canvas.Refresh();
+            frame.Refresh();
+            textBox1.Text = "";
+            textBox2.Text = "";
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            name_of_doodle = textBox1.Text;
         }
     }
 }
