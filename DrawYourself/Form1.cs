@@ -14,6 +14,7 @@ namespace DrawYourself
     {
         Pen myPen = new Pen(Color.Black, 1);
         Graphics g = null;
+        Graphics gnew = null;
         bool draw = false;
         Point start = new Point(0, 0);
         Point end = new Point(0, 0);
@@ -25,6 +26,7 @@ namespace DrawYourself
         {
             InitializeComponent();
             g = canvas.CreateGraphics();
+            gnew = frame.CreateGraphics();
         }
 
         private void canvas_MouseDown(object sender, MouseEventArgs e)
@@ -60,12 +62,10 @@ namespace DrawYourself
 
         private void button1_Click(object sender, EventArgs e)
         {
+            name_of_doodle = textBox1.Text;
             textBox2.Text = name_of_doodle;
             canvas.Refresh();
             frame.Refresh();
-            Graphics gnew = frame.CreateGraphics();
-            //int length,width;
-            //int indx;
             for (int i=0; i<strokes; i++)
             {
                 if (pathList[i].Count == 1)
@@ -78,24 +78,6 @@ namespace DrawYourself
                     Thread.Sleep(10);
                 }
                 Thread.Sleep(50);
-
-                // divide the stroke in to small paths to animate it
-                /*length = pathList[i].Count;
-                width = (int)Math.Log(length/2 , 1.5);
-                indx = 0;
-                while((length-indx) > width)
-                {
-                    path = pathList[i].GetRange(indx,width).ToArray();
-                    gnew.DrawLines(myPen, path);
-                    indx += width;
-                    Thread.Sleep(120);
-                }
-                path = pathList[i].GetRange(indx, length - indx).ToArray();
-                if (path.Length > 1)
-                {
-                    gnew.DrawLines(myPen, path);
-                }
-                Thread.Sleep(120);*/
 
                 //simply show the drawing
                 /*path = pathList[i].ToArray();
@@ -111,11 +93,6 @@ namespace DrawYourself
             frame.Refresh();
             textBox1.Text = "";
             textBox2.Text = "";
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            name_of_doodle = textBox1.Text;
         }
     }
 }
